@@ -3,9 +3,10 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 
-#define CELL_SIZE 5
+#define CELL_SIZE 2
 #define WINDOW_SIZE 800
-#define DELAY 50
+#define DELAY 10
+#define MOD 2
 
 typedef struct GameOfLife {
     int size;
@@ -51,8 +52,126 @@ void nextGen(GameOfLife* G) {
     for (int i = 0; i<G->size; i++) {
         for (int j = 0; j<G->size; j++) {
             int n = neighbors(G, i, j);
-            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3);
-            else res->grid[i][j] = (n==3);
+            if (MOD == 0) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3);
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 1) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3);
+	            else res->grid[i][j] = (n==3 || n==6);
+	        }
+	  		else if (MOD == 2) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==3 || n==4 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 3) {
+	            if (G->grid[i][j]) res->grid[i][j] = 0;
+	            else res->grid[i][j] = (n==2);
+	        }
+	        else if (MOD == 4) {
+	            if (G->grid[i][j]) res->grid[i][j] = 1;
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 5) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==2 || n==5);
+	            else res->grid[i][j] = (n==3 || n==6);
+	        }
+	        else if (MOD == 6) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==4 || n==5);
+	            else res->grid[i][j] = (n==3 || n==6 || n==8);
+	        }
+	        else if (MOD == 7) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3 || n==5 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 8) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==3 || n==5 || n==8);
+	            else res->grid[i][j] = (n==3 || n==5 || n==7);
+	        }
+	        else if (MOD == 9) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1);
+	            else res->grid[i][j] = (n==1);
+	        }
+	        else if (MOD == 10) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==3 || n==5 || n==7);
+	            else res->grid[i][j] = (n==1 || n==3 || n==5 || n==7);
+	        }
+	        else if (MOD == 11) {
+	            if (G->grid[i][j]) res->grid[i][j] = 0;
+	            else res->grid[i][j] = (n==2 || n==3 || n==4);
+	        }
+	        else if (MOD == 12) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==4 || n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 13) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3 || n==4 || n==5);
+	            else res->grid[i][j] = (n==4 || n==5 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 14) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==2 || n==3 || n==4 || n==5);
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 15) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==5);
+	            else res->grid[i][j] = (n==3 || n==4 || n==5);
+	        }
+	        else if (MOD == 16) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==4 || n==5);
+	            else res->grid[i][j] = (n==3 || n==6 || n==8);
+	        }
+	        else if (MOD == 17) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==3 || n==4 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==0 || n==1 || n==2 || n==3 || n==4 || n==7 || n==8);
+	        }
+	        else if (MOD == 18) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==3 || n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==4 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 19) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3 || n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 20) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3 || n==8);
+	            else res->grid[i][j] = (n==3 || n==5 || n==7);
+	        }
+	        else if (MOD == 21) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3);
+	            else res->grid[i][j] = (n==2);
+	        }
+	        else if (MOD == 22) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==2 || n==3 || n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3 || n==7 || n==8);
+	        }
+	        else if (MOD == 23) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==4 || n==5 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 24) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==0 || n==3 || n==4 || n==5 || n==6);
+	            else res->grid[i][j] = (n==2);
+	        }
+	        else if (MOD == 25) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==4 || n==5 || n==6 || n==7 || n==8);
+	            else res->grid[i][j] = (n==3 || n==5 || n==6 || n==7 || n==8);
+	        }
+	        else if (MOD == 26) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==5);
+	            else res->grid[i][j] = (n==3 || n==4 || n==5);
+	        }
+	        else if (MOD == 27) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==0 || n==2 || n==3);
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 28) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==2);
+	            else res->grid[i][j] = (n==3);
+	        }
+	        else if (MOD == 29) {
+	            if (G->grid[i][j]) res->grid[i][j] = (n==1 || n==2 || n==3 || n==4 || n==5);
+	            else res->grid[i][j] = (n==3);
+	        }
         }
     }
     for (int i = 0; i<G->size; i++) {
@@ -113,6 +232,11 @@ int main(int argc, char *argv[]) {
 
     GameOfLife* G = newGame(WINDOW_SIZE/CELL_SIZE);
     randomize(G);
+    // G->grid[0][0] = 1;
+    // G->grid[0][1] = 1;
+    // G->grid[0][2] = 1;
+    // G->grid[1][1] = 1;
+    // G->grid[2][2] = 1;
     
     int running = 1;
     SDL_Event event;
